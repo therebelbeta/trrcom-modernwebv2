@@ -11,7 +11,9 @@ $$.s = { // services
 					console.log('waypoints'+thisid);
 					$(this).waypoint(function(){
 						console.log('scrolled to ' + thisid); 
-						routie('/'+thisid);
+
+						$$.m.nameOnly = true;
+						window.location.hash = '/'+thisid;
 					},{
 				  	offset: '50%'
 					});
@@ -28,7 +30,7 @@ $$.s = { // services
 	    	'scrollTop':   $('#'+page).offset().top-81
 			}, 2000);
 		};
-		if($$.m.initReady){
+		if($$.m.initReady && !$$.m.nameOnly){
 			scroll();
 		};
 	}
@@ -37,24 +39,28 @@ $$.c = { // controllers
 	main:function(){
 		$$.s.init('main');
 		$$.s.goto('main');
+		$$.m.nameOnly = false;
 		console.log('mainpage');
 		// main page
 	},
 	stack:function(){
 		$$.s.init('stack');
 		$$.s.goto('stack');
+		$$.m.nameOnly = false;
 		console.log('stack');
 		// stack
 	},
 	projects:function(){
 		$$.s.init('projects');
 		$$.s.goto('projects');
+		$$.m.nameOnly = false;
 		console.log('projects');
 		// projects
 	},
 	contact:function(){
 		$$.s.init('contact');
 		$$.s.goto('contact');
+		$$.m.nameOnly = false;
 		console.log('contact');
 		// contact form and links
 	},
@@ -64,7 +70,8 @@ $$.c = { // controllers
 };
 $$.m = { // non-vue models
 	initRan:false,
-	initReady:false
+	initReady:false,
+	nameOnly:false
 };
 
 routie('/',$$.c.main);

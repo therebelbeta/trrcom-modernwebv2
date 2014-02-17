@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "~3.2.4",
-    "gulp-uglify": "~0.1.0",
-    "gulp-concat": "~2.1.7",
-    "gulp-less": "~1.1.1",
-    "gulp-minify-html": "~0.1.0"
+    "gulp": "*",
+    "gulp-uglify": "*",
+    "gulp-concat": "*",
+    "gulp-less": "*",
+    "gulp-minify-html": "*"
   },
   "engines": {
     "node": ">=0.8.0"

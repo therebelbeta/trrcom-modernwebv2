@@ -8,76 +8,75 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
 var minifyHTML = require('gulp-minify-html');
-
-
-gulp.task('scripts', function() {
-  // Minify and copy all JavaScript (except vendor scripts)
-
-  gulp.src(['source/js/**/*.js', '!source/js/lib/**'])
+var paths = {
+  scripts: {
+    ours: ['source/js/**/*.js', '!source/js/lib/**'],
+    lib:['source/lib/jquery/jquery.min.js', 'source/lib/vue/dist/vue.min.js', 'source/lib/routie/dist/routie.min.js', 'source/lib/jquery-waypoints/waypoints.min.js', 'source/js/lib/**']
+  },
+  styles: {
+    ours:['source/less/main.less'],
+    lib:['source/less/lib/**/*.css']
+  },
+  images: 'source/img/**',
+  html:{
+    index:['source/index.html'],
+    templates:['source/templates/**/*.html'],
+  },
+  fonts:['source/assets/fonts/**'],
+  misc:['source/assets/misc/**']
+};
+gulp.task('scripts-ours', function() {
+  return gulp.src(paths.scripts.ours)
     .pipe(concat("main.js"))
     .pipe(uglify())
     .pipe(gulp.dest('build/js'));
-
-  // Copy vendor files
-  gulp.src([
-      'source/lib/jquery/jquery.min.js', 
-      'source/lib/vue/dist/vue.min.js', 
-      'source/lib/routie/dist/routie.min.js', 
-      'source/lib/jquery-waypoints/waypoints.min.js', 
-      'source/js/lib/**'])
+});
+gulp.task('scripts-lib', function() {
+  return gulp.src(paths.scripts.lib)
     .pipe(concat("lib.js"))
     .pipe(gulp.dest('build/js'));
-
 });
-
-gulp.task('less', function () {
-
-  gulp.src(['source/less/lib/**/*.css'])
-    .pipe(concat("lib.css"))
-    .pipe(gulp.dest('build/css'));
-
-  gulp.src('source/less/main.less')
+gulp.task('styles-ours', function () {
+  return gulp.src(paths.styles.ours)
     .pipe(less())
     .pipe(gulp.dest('build/css'));
 });
-
+gulp.task('styles-lib', function () {
+  return gulp.src(paths.styles.lib)
+    .pipe(concat("lib.css"))
+    .pipe(gulp.dest('build/css'));
+});
 // Copy all static assets
-gulp.task('copy', function() {
-  gulp.src('source/img/**')
+gulp.task('copy-img', function() {
+  return gulp.src(paths.images)
     .pipe(gulp.dest('build/img'));
-
-  gulp.src('source/index.html')
+});
+gulp.task('copy-index', function() {
+  return gulp.src(paths.html.index)
     .pipe(gulp.dest('build'));
-
-  gulp.src('source/js/lib/lib.js')
-    .pipe(gulp.dest('build/js'));
-
-  gulp.src('source/assets/fonts/**')
+});
+gulp.task('copy-templates', function() {
+  return gulp.src(paths.html.templates)
+    .pipe(gulp.dest('build/templates'));
+});
+gulp.task('copy-fonts', function() {
+  return gulp.src(paths.fonts)
     .pipe(gulp.dest('build/fonts'));
-
-  gulp.src('source/assets/misc/**')
+});
+gulp.task('copy-misc', function() {
+  return gulp.src(paths.misc)
     .pipe(gulp.dest('build/misc'));
 });
-
-// The default task (called when you run `gulp`)
-gulp.task('default', function() {
-  gulp.run('scripts', 'less', 'copy');
-
-  // Watch files and run tasks if they change
-  gulp.watch('source/js/**', function(event) {
-    gulp.run('scripts');
-  });
-  gulp.watch('source/less/**', function(event) {
-    gulp.run('less');
-  });
-  gulp.watch('source/**/*.html', function(event) {
-    gulp.run('copy','scripts');
-  }); 
-  gulp.watch([
-    'source/img/**',
-    'source/assets/fonts/**',
-    'source/assets/misc/**'
-  ], function(event) {
-    gulp.run('copy');
-  });
+gulp.task('watch', function () {
+  gulp.watch(paths.scripts.ours, ['scripts-ours']);
+  gulp.watch(paths.scripts.lib, ['scripts-lib']);
+  gulp.watch(paths.styles.ours, ['styles-ours']);
+  gulp.watch(paths.styles.lib, ['styles-lib']);
+  gulp.watch(paths.images, ['copy-img']);
+  gulp.watch(paths.html.index, ['copy-index']);
+  gulp.watch(paths.html.templates, ['copy-templates']);
+  gulp.watch(paths.fonts, ['copy-fonts']);
+  gulp.watch(paths.misc, ['copy-misc']);
 });
+// The default task (called when you run `gulp`)
+gulp.task('default', ['scripts-lib', 'scripts-ours', 'styles-lib', 'styles-ours', 'copy-img', 'copy-index', 'copy-templates', 'copy-fonts', 'copy-misc','watch']);
