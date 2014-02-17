@@ -19,7 +19,12 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('build/js'));
 
   // Copy vendor files
-  gulp.src(['source/lib/jquery/jquery.min.js', 'source/lib/vue/dist/vue.min.js', 'source/js/lib/**'])
+  gulp.src([
+      'source/lib/jquery/jquery.min.js', 
+      'source/lib/vue/dist/vue.min.js', 
+      'source/lib/routie/dist/routie.min.js', 
+      'source/lib/jquery-waypoints/waypoints.min.js', 
+      'source/js/lib/**'])
     .pipe(concat("lib.js"))
     .pipe(gulp.dest('build/js'));
 
