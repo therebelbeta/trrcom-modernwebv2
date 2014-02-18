@@ -14,6 +14,7 @@ var paths = {
     lib:['source/lib/jquery/jquery.min.js', 'source/lib/vue/dist/vue.min.js', 'source/lib/routie/dist/routie.min.js', 'source/lib/jquery-waypoints/waypoints.min.js', 'source/js/lib/**']
   },
   styles: {
+    ourswatch:['source/less/**/*.less'],
     ours:['source/less/main.less'],
     lib:['source/less/lib/**/*.css']
   },
@@ -70,7 +71,7 @@ gulp.task('copy-misc', function() {
 gulp.task('watch', function () {
   gulp.watch(paths.scripts.ours, ['scripts-ours']);
   gulp.watch(paths.scripts.lib, ['scripts-lib']);
-  gulp.watch(paths.styles.ours, ['styles-ours']);
+  gulp.watch(paths.styles.ourswatch, ['styles-ours']);
   gulp.watch(paths.styles.lib, ['styles-lib']);
   gulp.watch(paths.images, ['copy-img']);
   gulp.watch(paths.html.index, ['copy-index']);
