@@ -2,9 +2,9 @@
   "name": "therebelrobot",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "~2.0.3",
-    "vue": "~0.8.6",
-    "routie": "~0.3.2",
-    "jquery-waypoints": "~2.0.4"
+    "preboot": "*",
+    "topcoat": "~0.8.0",
+    "skrollr": "~0.6.21",
+    "vue": "~0.8.8"
   }
 }

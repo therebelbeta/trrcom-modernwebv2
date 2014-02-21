@@ -11,7 +11,7 @@ var minifyHTML = require('gulp-minify-html');
 var paths = {
   scripts: {
     ours: ['source/js/**/*.js', '!source/js/lib/**'],
-    lib:['source/lib/jquery/jquery.min.js', 'source/lib/vue/dist/vue.min.js', 'source/lib/routie/dist/routie.min.js', 'source/lib/jquery-waypoints/waypoints.min.js', 'source/js/lib/**']
+    lib:['source/lib/vue/dist/vue.min.js','source/js/lib/**']
   },
   styles: {
     ours:['source/less/main.less'],
@@ -23,7 +23,7 @@ var paths = {
     templates:['source/templates/**/*.html'],
   },
   fonts:['source/assets/fonts/**'],
-  misc:['source/assets/misc/**']
+  misc:['source/assets/misc/**']scripts-lib
 };
 gulp.task('scripts-ours', function() {
   return gulp.src(paths.scripts.ours)
