@@ -1,12 +1,23 @@
-body{
-
-	&[data-device="desktop"]{
-
+#about{
+	img.small.circle{
+		width:6rem;
+		border-radius:6rem;
+		-webkit-box-shadow: 0 0 0 3px @darktext;
+		box-shadow: 0 0 0 3px @darktext;
 	}
-	&[data-device="tablet"]{
-
+	h2{
+		border: 3px solid @darktext;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+		color: @darktext;
+		padding: .4rem .6rem;
+		display: inline-block;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+		margin-bottom: 2rem;
 	}
-	&[data-device="phone"]{
-
+	p{
+		color: @darktext2;
 	}
 }

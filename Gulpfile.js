@@ -24,7 +24,7 @@ var paths = {
     templates:['source/templates/**/*.html'],
   },
   fonts:['source/assets/fonts/**'],
-  misc:['source/assets/misc/**']scripts-lib
+  misc:['source/assets/misc/**']
 };
 gulp.task('scripts-ours', function() {
   return gulp.src(paths.scripts.ours)
