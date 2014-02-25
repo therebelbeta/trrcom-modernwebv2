@@ -14,7 +14,7 @@ function wheel(event) {
 
 function handle(delta) {
     var time = 1000;
-	var distance = 300;
+    var distance = 300;
     
     $('html, body').stop().animate({
         scrollTop: $(window).scrollTop() - (distance * delta)
@@ -25,4 +25,11 @@ function handle(delta) {
 
 $(document).ready(function(){
 	var s = skrollr.init();
+    var vue = new Vue({
+        el: '#vapp',
+        data: {
+            modalOpen : false
+        }
+    })
 });
+

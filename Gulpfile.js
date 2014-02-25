@@ -11,7 +11,7 @@ var minifyHTML = require('gulp-minify-html');
 var paths = {
   scripts: {
     ours: ['source/js/**/*.js', '!source/js/lib/**'],
-    lib:['source/lib/jquery/dist/jquery.min.js','source/lib/vue/dist/vue.min.js','source/js/lib/**/*.js']
+    lib:['source/lib/jquery/dist/jquery.min.js','source/lib/vue/dist/vue.js','source/js/lib/**/*.js']
   },
   styles: {
     ourswatch:['source/less/**/*.less'],
