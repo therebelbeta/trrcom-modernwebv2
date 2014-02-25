@@ -14,7 +14,7 @@ function wheel(event) {
 
 function handle(delta) {
     var time = 1000;
-    var distance = 300;
+    var distance = 500;
     
     $('html, body').stop().animate({
         scrollTop: $(window).scrollTop() - (distance * delta)
@@ -22,9 +22,18 @@ function handle(delta) {
 }
 
 /*end smooth scrolling handlers*/
+var $rootScope = {}
+
+$rootScope.ifDesktop = (/windows|linux|os\s+[x9]|solaris|bsd/i).test(navigator.userAgent) && !(/ipod|iphone/i).test(navigator.userAgent);
+$rootScope.ifTablet = (/ipad/i).test(navigator.userAgent)||((/android/i).test(navigator.userAgent) && !(/mobile/i).test(navigator.userAgent));
+$rootScope.ifMobile = (/ipod|iphone/i).test(navigator.userAgent)|| ((/android/i).test(navigator.userAgent) && (/mobile/i).test(navigator.userAgent)) ||(!$rootScope.ifDesktop && !$rootScope.ifTablet);
+$rootScope.orientation = (jQuery(window).width() < jQuery(window).height())?'portrait':'landscape';
+$rootScope.userDevice = $rootScope.ifMobile ? 'mobile' : 'desktop';
 
 $(document).ready(function(){
-	var s = skrollr.init();
+    if ($rootScope.userDevice == 'desktop'){
+	   var s = skrollr.init();
+    };
     var vue = new Vue({
         el: '#vapp',
         data: {
