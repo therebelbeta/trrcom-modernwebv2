@@ -37,7 +37,8 @@ $(document).ready(function(){
     var vue = new Vue({
         el: '#vapp',
         data: {
-            modalOpen : false
+            modalOpen : false,
+            modal: {}
         }
     })
 });
